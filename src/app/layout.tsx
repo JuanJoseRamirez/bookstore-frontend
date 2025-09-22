@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
+import { AuthorsProvider } from '@/hook/useAuthors'
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,12 +30,14 @@ export default function RootLayout({
     { name: "Añadir", path: "/crear" },
   ];
   return (
-    <html lang="en">
+    <html>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Header routes={routes}/> 
-        {children}
+         <AuthorsProvider>
+          {children}
+        </AuthorsProvider>
       </body>
     </html>
   );

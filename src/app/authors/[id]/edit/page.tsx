@@ -2,13 +2,15 @@
 import { useParams, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { z } from 'zod';
-import { useAuthors } from '@/hook/useAuthors';
+import { useAuthors, AuthorsProvider } from '@/hook/useAuthors';
 
 const authorSchema = z.object({
   name: z.string().min(2, 'Nombre muy corto'),
   birthDate: z.string().min(1, 'Fecha requerida'),
   description: z.string().min(5, 'Descripción mínima de 5 caracteres'),
   image: z.string().url('Debe ser una URL válida'),
+  books: z.array(z.any()),
+  prizes: z.array(z.any()),
 });
 
 export default function EditAuthorPage() {
@@ -25,6 +27,8 @@ export default function EditAuthorPage() {
   const [description, setDescription] = useState('');
   const [image, setImage] = useState('');
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [books, setBooks] = useState([]);
+  const [prizes, setPrizes] = useState([]);
 
   // Precargar datos del autor al montar
   useEffect(() => {
@@ -41,7 +45,7 @@ export default function EditAuthorPage() {
     setErrors({});
 
     // Validar con Zod
-    const result = authorSchema.safeParse({ name, birthDate, description, image });
+    const result = authorSchema.safeParse({ name, birthDate, description, image, books, prizes });
     if (!result.success) {
       const fieldErrors: Record<string, string> = {};
       result.error.issues.forEach(issue => {

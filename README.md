@@ -14,23 +14,24 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the page.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Arquitectura de la Solucion
+- La solucione esta estructurada asi
+src/app
+/authors
+ Para la pagina se usa un Header, un componente AuthorList que sirve para mostras la lista de autores/ para la pagina 
+ /favorites se usa el mismo componente y se filtran los autores a mostrar con una valor booleano de si es favorito.
+/crear
+Esta pagina no usa componentes reutilzables, si no que implementa su propio componente usando userstate para manejar el estado del formulario
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Hooks
+/useAuthor maneja todas las operaciones CRUD de authores contra la API, ademas para la implementacion de favoritos, se creo un customContext que maneja permite manejar el estado favorito del author, manteniendo las opraciones CRUDn realizadas para le preparcial.
+/useBooks maneja todas las operaciones CRUD de books, este hook se creo este hooks para primero poder eliminar relaciones de authores con sus libros, para poder eliminar un autor.
 
-## Learn More
+/AuthorList componente que muestra la listas de los autores es te se usa en varias paginas.
 
-To learn more about Next.js, take a look at the following resources:
+Para el desarrllo de la parte B del parcial, Se trabajo la Accesibilidad, esta se puede validar el mirar los atributos de todos los <buttom> usados en la implementacion, a su vez para la navegacion con teclado se puede verificar de forma practica usando el tabulador.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Para correr la app, primero ejecutar le back-end y luego correr el comando
+npm run dev

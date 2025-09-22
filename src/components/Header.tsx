@@ -17,13 +17,16 @@ const Header = () => {
         </Link>
         <nav className="flex space-x-4">
           <Link href="/" className="hover:text-gray-300">
-            <h1>Inicio</h1>
+            <h1>Home</h1>
           </Link>
           <Link href="/authors" className="hover:text-gray-300">
         <   h1>Authors</h1>
           </Link>
           <Link href="/crear" className="hover:text-gray-300">
-            <h1>Añadir</h1>
+            <h1>Add</h1>
+          </Link>
+          <Link href="/favorites" className="hover:text-gray-300">
+            <h1>Favorites</h1>
           </Link>
         </nav>
       </div>

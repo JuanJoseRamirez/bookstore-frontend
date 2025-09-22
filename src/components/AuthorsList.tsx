@@ -48,7 +48,7 @@ export default function AuthorsList() {
             </h2>
             <button
             onClick={() => router.push(`/authors/${author.id}/edit`)}
-            className="mt-2 px-3 py-1 bg-gray-800 text-white rounded mb-2 hover:bg-gray-900"
+            className="mt-2 px-3 py-1 bg-gray-800 text-white rounded mb-2 hover:bg-green-700"
           >
             Editar
           </button>
